@@ -1,8 +1,12 @@
 .App {
-  text-align: center;
+  /* text-align: center; */
   background-color: grey;
   width: 80%;
   margin: auto;
+}
+
+.hide {
+  display: none;
 }
 
 .App-logo {
@@ -32,4 +36,14 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.btn-area {
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn-div {
+  width: 40%;
+  padding: 2.5em;
 }
