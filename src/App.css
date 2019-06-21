@@ -47,3 +47,14 @@
   width: 40%;
   padding: 2.5em;
 }
+
+#details {
+  width: 90%;
+  margin: 10% auto;
+}
+
+.bgc {
+  margin-top: 2.5em;
+  background-color: aliceblue;
+  padding: 1.5em;
+}

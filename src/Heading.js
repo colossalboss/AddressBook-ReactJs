@@ -3,9 +3,10 @@ import Form from './Form';
 import List from './List';
 import Buttons from './Buttons';
 import InputField from './InputField';
+import Details from './Details';
 import style from './style';
 
-
+ 
 class Heading extends React.Component {
     constructor(props) {
         super(props)
@@ -44,15 +45,45 @@ class Heading extends React.Component {
             obj.email = this.state.email;
             obj.phone = this.state.phone;
             this.state.contacts.push(obj);
+            console.log(this.state.contacts);
         }
-        console.log(this.state.contacts);
+    };
+
+    displayDetails = () => {
+        let elem = document.getElementById('details');
+        elem.textContent = '';
         
+        if (elem.innerHTML === '') {
+            this.state.contacts.forEach(contact => {
+                let newElem = document.createElement('DIV');
+                newElem.classList.add('bgc');
+                let name = document.createElement('H2');
+                name.textContent = 'Name: ';
+    
+                let email = document.createElement('H2');
+                email.textContent = 'Email: ';
+    
+                let phone = document.createElement('H2');
+                phone.textContent = 'Phone: ';
+    
+                name.textContent += contact.name;
+                email.textContent += contact.email;
+                phone.textContent += contact.phone;
+                console.log(contact.name);
+                
+    
+                newElem.appendChild(name);
+                newElem.appendChild(email);
+                newElem.appendChild(phone);
+                elem.appendChild(newElem);
+            });
+        }
     }
     
     render() {
         // console.log(this.state.contacts, 'name');
         
-        let { name, email, phone } = this.state;
+        let { name, email, phone, contacts } = this.state;
         return (
             <div>
                 <div>
@@ -62,7 +93,10 @@ class Heading extends React.Component {
 
                 <Form onChange={this.handleChange}/>
                 
-                <Buttons onClick={this.saveContact}/>
+                <Buttons onClick={this.saveContact} />
+
+                <Details id="details"
+                    onClick={this.displayDetails}/>
 
                 <List 
                    name={name}
