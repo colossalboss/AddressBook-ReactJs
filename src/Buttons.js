@@ -1,20 +1,14 @@
 import React from 'react';
 import style from './style';
+import Heading from './Heading';
 
 
-class Buttons extends React.Component  {
-    render() {
-        return (
-            <div className="btn-area">
-                <div className="btn-div">
-                    <button>Add now</button>
-                </div>
-                <div className="btn-div">
-                    <button>Cancel</button>
-                </div>
-            </div>
-        )
-    }
-};
+const Buttons = ({onClick}) => {
+    return (
+        <div className="btn-div">
+            <button onClick={onClick}>Add Now</button>
+        </div>
+    )
+}
 
 export default Buttons;

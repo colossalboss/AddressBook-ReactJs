@@ -1,25 +1,30 @@
 import React from 'react';
 import InputField from './InputField';
-import Buttons from './Buttons';
 import style from './style';
 
 
-const Form = () => {
+const Form = ({onChange}) => {
     return (
         <div className="form-div" style={style.display}>
-            <InputField label="Name"
-                    type="text"
-                    name="name" />
+            <InputField label="NAME" 
+                name="name"
+                type="text"
+                id="name"
+                onChange={onChange} />
 
-            <InputField label="Email"
-                    type="email"
-                    name="Email" />
+            <InputField label="EMAIL" 
+                name="email"
+                type="email"
+                id="email"
+                onChange={onChange} />
 
-            <InputField label="Phone"
-                    type="number"
-                    name="phone" />
+            <InputField label="PHONE" 
+                name="phone"
+                type="number"
+                id="phone"
+                onChange={onChange} />
 
-            <Buttons />
+
         </div>
     )
 }
