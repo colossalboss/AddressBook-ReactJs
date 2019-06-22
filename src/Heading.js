@@ -38,6 +38,29 @@ class Heading extends React.Component {
         }
     };
 
+    toggleAddButton = (e) => {
+        let element = document.querySelector('.form-div');
+        element.classList.toggle('hide')
+        if (element.classList.contains('hide')) {
+            e.target.textContent = '+ Add Now';
+        } else {
+            e.target.textContent = 'Cancel';
+        }
+    }
+
+    emptyFields = (grp) => {
+        let {name, email, phone} = this.state;
+
+        grp.forEach(item => {
+            document.getElementById(item).value = '';
+        });
+        this.setState({
+            name: '',
+            email: '',
+            phone: '',
+        })
+    }
+
     saveContact = () => {
         let obj = {};
         if (this.state.name && this.state.email && this.state.phone) {
@@ -47,9 +70,11 @@ class Heading extends React.Component {
             this.state.contacts.push(obj);
             console.log(this.state.contacts);
         }
+        this.emptyFields(['name', 'email', 'phone']);
     };
 
-    displayDetails = () => {
+    displayDetails = (e) => {
+        e.preventDefault();
         let elem = document.getElementById('details');
         elem.textContent = '';
         
@@ -87,21 +112,20 @@ class Heading extends React.Component {
         return (
             <div>
                 <div>
-                    <h1 style={style.heading}>Address Book {name}</h1>
+                    <h1 style={style.heading}>Address Book</h1>
                 </div>
-                <div><button style={style.btn}>+ Add</button></div>
+                <div><button onClick={this.toggleAddButton} style={style.btn}>Cancel</button></div>
 
-                <Form onChange={this.handleChange}/>
-                
-                <Buttons onClick={this.saveContact} />
+                <Form onChange={this.handleChange}
+                    onClick={this.saveContact}    />
 
                 <Details id="details"
                     onClick={this.displayDetails}/>
 
-                <List 
+                {/* <List 
                    name={name}
                    email={email}
-                   phone={phone} />
+                   phone={phone} /> */}
             </div>
         );
     }

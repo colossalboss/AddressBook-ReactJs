@@ -6,7 +6,7 @@ import Heading from './Heading';
 const Buttons = ({onClick}) => {
     return (
         <div className="btn-div">
-            <button onClick={onClick}>Add Now</button>
+            <button onClick={onClick}>Save</button>
         </div>
     )
 }

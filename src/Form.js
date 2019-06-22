@@ -1,9 +1,10 @@
 import React from 'react';
 import InputField from './InputField';
+import Buttons from './Buttons';
 import style from './style';
 
 
-const Form = ({onChange}) => {
+const Form = ({onChange, onClick}) => {
     return (
         <div className="form-div" style={style.display}>
             <InputField label="NAME" 
@@ -24,6 +25,7 @@ const Form = ({onChange}) => {
                 id="phone"
                 onChange={onChange} />
 
+            <Buttons onClick={onClick} />
 
         </div>
     )
