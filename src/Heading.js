@@ -70,6 +70,25 @@ class Heading extends React.Component {
             this.state.contacts.push(obj);
             console.log(this.state.contacts);
         }
+
+       if (!localStorage.getItem('contacts')) {
+            localStorage.setItem('contacts', '[]');
+            let arrFromStorage = localStorage.getItem('contacts');
+            let parsed = JSON.parse(arrFromStorage);
+            parsed.push(obj);
+            localStorage.setItem('contacts', JSON.stringify(parsed));
+       } else {
+           let contact = localStorage.getItem('contacts');
+           let contacts = JSON.parse(contact);
+           console.log(contacts);
+           
+           contacts.push(obj);
+
+           localStorage.setItem('contacts', JSON.stringify(contacts));
+            let x = localStorage.getItem('contacts');
+       }
+        
+
         this.emptyFields(['name', 'email', 'phone']);
     };
 
@@ -78,8 +97,10 @@ class Heading extends React.Component {
         let elem = document.getElementById('details');
         elem.textContent = '';
         
+        let fromStorage = localStorage.getItem('contacts');
+        let res = JSON.parse(fromStorage);
         if (elem.innerHTML === '') {
-            this.state.contacts.forEach(contact => {
+            res.forEach(contact => {
                 let newElem = document.createElement('DIV');
                 newElem.classList.add('bgc');
                 let name = document.createElement('H2');
@@ -90,6 +111,7 @@ class Heading extends React.Component {
     
                 let phone = document.createElement('H2');
                 phone.textContent = 'Phone: ';
+
     
                 name.textContent += contact.name;
                 email.textContent += contact.email;
