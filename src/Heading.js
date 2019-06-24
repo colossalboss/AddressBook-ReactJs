@@ -62,34 +62,49 @@ class Heading extends React.Component {
 
     saveContact = () => {
         let obj = {};
-        if (this.state.name && this.state.email && this.state.phone) {
+        if (this.state.name  && this.state.email  && this.state.phone) {
             obj.name = this.state.name;
             obj.email = this.state.email;
             obj.phone = this.state.phone;
             obj.id = this.state.phone;
             console.log(this.state.contacts);
+
+            if (!localStorage.getItem('contacts')) {
+                 localStorage.setItem('contacts', '[]');
+                 let arrFromStorage = localStorage.getItem('contacts');
+                 let parsed = JSON.parse(arrFromStorage);
+                 parsed.push(obj);
+                 localStorage.setItem('contacts', JSON.stringify(parsed));
+            } else {
+                let contact = localStorage.getItem('contacts');
+                let contacts = JSON.parse(contact);
+                console.log(contacts);
+
+                /* Check if contact already exist */
+                let count = 0;
+                contacts.forEach(contact => {
+                    if (contact.name === obj.name || contact.phone === obj.phone || contact.email === obj.email) {
+                        count = count + 1;
+                    }else {
+                        return true;
+                     } 
+                });
+
+                if (count > 0) {
+                    alert('Name, Email or Phone number already exist');
+                } else {
+                    contacts.push(obj);
+                    
+                    localStorage.setItem('contacts', JSON.stringify(contacts));
+                    let x = localStorage.getItem('contacts');
+                }
+            }
+             
+     
+             this.emptyFields(['name', 'email', 'phone']);
+         };
         }
 
-       if (!localStorage.getItem('contacts')) {
-            localStorage.setItem('contacts', '[]');
-            let arrFromStorage = localStorage.getItem('contacts');
-            let parsed = JSON.parse(arrFromStorage);
-            parsed.push(obj);
-            localStorage.setItem('contacts', JSON.stringify(parsed));
-       } else {
-           let contact = localStorage.getItem('contacts');
-           let contacts = JSON.parse(contact);
-           console.log(contacts);
-           
-           contacts.push(obj);
-
-           localStorage.setItem('contacts', JSON.stringify(contacts));
-            let x = localStorage.getItem('contacts');
-       }
-        
-
-        this.emptyFields(['name', 'email', 'phone']);
-    };
 
     displayDetails = (e) => {
         e.preventDefault();
@@ -101,7 +116,6 @@ class Heading extends React.Component {
         if (elem.innerHTML === '') {
             res.forEach(contact => {
                 let newElem = document.createElement('DIV');
-                newElem.setAttribute('id', contact.id);
                 newElem.classList.add('bgc');
                 let name = document.createElement('H4');
                 name.textContent = 'Name: ';
@@ -111,6 +125,12 @@ class Heading extends React.Component {
     
                 let phone = document.createElement('H4');
                 phone.textContent = 'Phone: ';
+
+                let btn = document.createElement('BUTTON');
+                btn.textContent = 'Delete';
+                btn.classList.add('delete');
+                btn.setAttribute('id', contact.id);
+
 
     
                 name.textContent += contact.name;
@@ -122,8 +142,28 @@ class Heading extends React.Component {
                 newElem.appendChild(name);
                 newElem.appendChild(email);
                 newElem.appendChild(phone);
+                newElem.appendChild(btn);
                 elem.appendChild(newElem);
             });
+            document.getElementById('details').addEventListener('click', this.deleteContact);
+        }
+    }
+
+    deleteContact = (e) => {
+        if (e.target.classList.contains('delete')) {
+            let contacts = localStorage.getItem('contacts');
+            let response = JSON.parse(contacts);
+            response.forEach(contact => {
+                if (e.target.id === contact.id) {
+                    let idx = response.indexOf(contact);
+                    console.log(idx);
+                    
+                    response.splice(idx, 1);
+                }
+            });
+            
+            localStorage.setItem('contacts', JSON.stringify(response));
+            this.displayDetails(e);
         }
     }
     

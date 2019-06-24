@@ -7,25 +7,30 @@ import style from './style';
 const Form = ({onChange, onClick}) => {
     return (
         <div className="form-div" style={style.display}>
-            <InputField label="NAME:" 
-                name="name"
-                type="text"
-                id="name"
-                onChange={onChange} />
+            <form>
+                <InputField label="NAME:" 
+                    name="name"
+                    type="text"
+                    id="name"
+                    onChange={onChange}
+                    error="name-error" />
 
-            <InputField label="EMAIL:" 
-                name="email"
-                type="email"
-                id="email"
-                onChange={onChange} />
+                <InputField label="EMAIL:" 
+                    name="email"
+                    type="email"
+                    id="email"
+                    onChange={onChange}
+                    error="email-error" />
 
-            <InputField label="PHONE:" 
-                name="phone"
-                type="number"
-                id="phone"
-                onChange={onChange} />
+                <InputField label="PHONE:" 
+                    name="phone"
+                    type="number"
+                    id="phone"
+                    onChange={onChange}
+                    error="phone-error" />
 
-            <Buttons onClick={onClick} />
+                <Buttons onClick={onClick} />
+            </form>
 
         </div>
     )
