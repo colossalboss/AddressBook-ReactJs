@@ -15,7 +15,6 @@ class Heading extends React.Component {
             name: '',
             email: '',
             phone: '',
-            contacts: [],
         };
 
         this.handleChange = this.handleChange.bind(this)
@@ -67,7 +66,7 @@ class Heading extends React.Component {
             obj.name = this.state.name;
             obj.email = this.state.email;
             obj.phone = this.state.phone;
-            this.state.contacts.push(obj);
+            obj.id = this.state.phone;
             console.log(this.state.contacts);
         }
 
@@ -102,14 +101,15 @@ class Heading extends React.Component {
         if (elem.innerHTML === '') {
             res.forEach(contact => {
                 let newElem = document.createElement('DIV');
+                newElem.setAttribute('id', contact.id);
                 newElem.classList.add('bgc');
-                let name = document.createElement('H2');
+                let name = document.createElement('H4');
                 name.textContent = 'Name: ';
     
-                let email = document.createElement('H2');
+                let email = document.createElement('H4');
                 email.textContent = 'Email: ';
     
-                let phone = document.createElement('H2');
+                let phone = document.createElement('H4');
                 phone.textContent = 'Phone: ';
 
     
@@ -133,8 +133,9 @@ class Heading extends React.Component {
         let { name, email, phone, contacts } = this.state;
         return (
             <div>
-                <div>
+                <div className="header">
                     <h1 style={style.heading}>Address Book</h1>
+                    <hr />
                 </div>
                 <div><button onClick={this.toggleAddButton} style={style.btn}>Cancel</button></div>
 

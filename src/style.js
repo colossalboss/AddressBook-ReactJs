@@ -7,6 +7,7 @@ const style = {
 
     heading: {
         textAlign: "center",
+        fontSize: "3.5em"
     },
 
     btn: {
@@ -20,7 +21,7 @@ const style = {
 
     input: {
         margin: 10,
-        padding: 5,
+        padding: 10,
         borderRadius: 8,
         border: "1px solid black"
     },

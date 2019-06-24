@@ -7,7 +7,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 const App = () => (
   <div className="App">
-    <h1>Hey! How's React?</h1>
 
     <Heading />
   </div>

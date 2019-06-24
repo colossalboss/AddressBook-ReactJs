@@ -1,8 +1,7 @@
 .App {
-  /* text-align: center; */
-  background-color: grey;
-  width: 80%;
+  width: 90%;
   margin: auto;
+  border-radius: 10px;
 }
 
 .hide {
@@ -50,13 +49,14 @@
 
 #details {
   width: 90%;
-  margin: 1% auto;
+  margin: 0 auto;
 }
 
 .bgc {
   margin-top: 2.5em;
   background-color: aliceblue;
   padding: 1.5em;
+  border-radius: 10px;
 }
 
 .link {
@@ -66,4 +66,30 @@
   border: 2px solid #fff;
   border-radius: 10px;
   background-color: black;
+}
+
+input {
+  width: 90%;
+}
+
+label {
+  width: 90%;
+}
+
+.header {
+  background-color: #fff;
+}
+
+@media screen and (min-width: 600px) {
+  .App {
+    width: 70%;
+    margin: auto;
+  }
+}
+
+@media screen and (min-width: 800px) {
+  .App {
+    width: 50%;
+    margin: auto;
+  }
 }
