@@ -45,6 +45,7 @@ class Heading extends React.Component {
         } else {
             e.target.textContent = 'Cancel';
         }
+        this.emptyFields(['name', 'email', 'phone']);
     }
 
     emptyFields = (grp) => {
@@ -57,7 +58,7 @@ class Heading extends React.Component {
             name: '',
             email: '',
             phone: '',
-        })
+        });
     }
 
     saveContact = () => {
@@ -172,7 +173,7 @@ class Heading extends React.Component {
         
         let { name, email, phone, contacts } = this.state;
         return (
-            <div>
+            <div style={style.container}>
                 <div className="header">
                     <h1 style={style.heading}>Address Book</h1>
                     <hr />

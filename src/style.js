@@ -26,6 +26,10 @@ const style = {
         border: "1px solid black"
     },
 
+    container: {
+        border: "8px solid grey",
+    }
+
     
 }
 
